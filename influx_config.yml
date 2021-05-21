@@ -1,5 +1,7 @@
 host : 'localhost'
 port : 8086
-user : 'root'
-password : 'root'
+#user : 'root'
+#password : 'root'
+user : 'db_meters'
+password : 'db_meters'
 dbname : 'db_meters'

@@ -21,7 +21,7 @@ class DataCollector:
         self.meter_map = None
         self.meter_map_last_change = -1
         log.info('Meters:')
-        for meter in sorted(self.get_meters()):
+        for meter in sorted(self.get_meters(),key = lambda meter_yaml: meter_yaml['name']):
             log.info('\t {} <--> {}'.format( meter['id'], meter['name']))
 
     def get_meters(self):
@@ -43,7 +43,9 @@ class DataCollector:
         t_utc = datetime.utcnow()
         t_str = t_utc.isoformat() + 'Z'
 
-        instrument = minimalmodbus.Instrument('/dev/ttyAMA0', 1) # port name, slave address (in decimal)
+        #instrument = minimalmodbus.Instrument('/dev/ttyAMA0', 1) # port name, slave address (in decimal)
+        #instrument = minimalmodbus.Instrument('/dev/serial0', 1) # port name, slave address (in decimal)
+        instrument = minimalmodbus.Instrument('/dev/ttyUSB0', 1) # port name, slave address (in decimal)
         instrument.mode = minimalmodbus.MODE_RTU   # rtu or ascii mode
         datas = dict()
         meter_id_name = dict() # mapping id to name
